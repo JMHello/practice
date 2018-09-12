@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>样式读写</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    .box {
+      background: blue;
+      margin-bottom: 10px;
+    }
+    .box1 {
+      width: 10rem;
+      height: 10rem;
+    }
+    .box2 {
+      width: 100px;
+      height: 100px;
+    }
+    .box3 {
+      width: 10em;
+      height: 10em;
+    }
+  </style>
+</head>
+<body>
+  <div class="box box1"></div>
+  <div class="box box2"></div>
+  <div class="box box3"></div>
+  <script>
+    const box1 = document.querySelector('.box1');
+    const box2 = document.querySelector('.box2');
+    const box3 = document.querySelector('.box3');
+    /* style */
+    console.log(box1.style.width)
+    console.log(box2.style.width)
+    console.log(box3.style.width)
+  </script>
+</body>
+</html>
