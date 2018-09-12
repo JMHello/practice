@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>数组去重</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
+
 <body>
   <h1>数组去重</h1>
   <div>
-    <h2>方法一：Array.from() + Set</h2> 
+    <h2>方法一：Array.from() + Set</h2>
     <code>
       function distinct(arr) {
-        return Array.from(new Set(arr));
+      return Array.from(new Set(arr));
       }
     </code>
     <p>
@@ -21,21 +23,21 @@
     </p>
     <script>
       var arr = [2, 3, 2, 4, 5, 7, 2, 3, 9, 10, NaN, NaN];
-      
+
       function distinct(arr) {
         return Array.from(new Set(arr));
       }
-      
+
       var result = distinct(arr);
       console.log(result)
     </script>
   </div>
 
   <div>
-    <h2>方法二：arr.filter() + arr.indexOf()</h2> 
+    <h2>方法二：arr.filter() + arr.indexOf()</h2>
     <code>
       function distinct(arr) {
-        return arr.filter((item, index) => arr.indexOf(item) === index);
+      return arr.filter((item, index) => arr.indexOf(item) === index);
       }
     </code>
     <p>
@@ -44,26 +46,26 @@
     </p>
     <script>
       var arr = [2, 3, 2, 4, 5, 7, 2, 3, 9, 10, NaN, NaN];
-      
+
       function distinct(arr) {
         return arr.filter((item, index) => arr.indexOf(item) === index);
       }
-      
+
       var result = distinct(arr);
       console.log(result)
     </script>
   </div>
 
   <div>
-    <h2>方法三：arr.reduce()</h2> 
+    <h2>方法三：arr.reduce()</h2>
     <code>
       function distinct(arr) {
-        return arr.sort((a, b) => a - b).reduce((init, current) => {
-          if (init.length === 0 || init[init.length - 1] !== current) {
-            init.push(current);
-          }
-          return init
-        }, []);
+      return arr.sort((a, b) => a - b).reduce((init, current) => {
+      if (init.length === 0 || init[init.length - 1] !== current) {
+      init.push(current);
+      }
+      return init
+      }, []);
       }
     </code>
     <p>
@@ -82,10 +84,64 @@
           return init
         }, []);
       }
-      
+
+      var result = distinct(arr);
+      console.log(result)
+    </script>
+  </div>
+
+  <div>
+    <h2>方法四：双重循环</h2>
+    <code>
+        function distinct(arr) {
+          var len = arr.length;
+          var ret = [];
+  
+          for (var i = 0; i < len; i++) {
+            for (var j = 0; j < len; j++) {
+              if (arr[i] === ret[j]) {
+                break;
+              }
+            }
+  
+            if (j === len) {
+              ret.push(arr[i]);
+            }
+          }
+  
+          return ret;
+        }
+    </code>
+    <p>
+      缺点：
+      1、 NaN === NaN 为false
+    </p>
+    <script>
+      var arr = [2, 3, 2, 4, 5, 7, 2, 3, 9, 10, NaN, NaN];
+
+      function distinct(arr) {
+        var len = arr.length;
+        var ret = [];
+
+        for (var i = 0; i < len; i++) {
+          for (var j = 0; j < len; j++) {
+            if (arr[i] === ret[j]) {
+              break;
+            }
+          }
+
+          if (j === len) {
+            ret.push(arr[i]);
+          }
+        }
+
+        return ret;
+      }
+
       var result = distinct(arr);
       console.log(result)
     </script>
   </div>
 </body>
+
 </html>
