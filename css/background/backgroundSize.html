@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>backgound-size</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    li {
+      list-style: none;
+    }
+
+    .img-wrapper {
+
+    }
+    .method-1 .img-wrapper {
+      width: 100%;
+      height: 486px;
+      background: url('./equipment-banner.jpg') center no-repeat;
+      background-size: cover;
+    }
+    .method-2 .img-wrapper {
+      width: 100%;
+      height: 486px;
+      background: url('./equipment-banner.jpg') center no-repeat;
+      background-size: contain;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper method-1">
+    <h2 class="title">background-size: cover</h2>
+    <div class="img-wrapper"></div>
+  </div>
+  <div class="wrapper method-2">
+      <h2 class="title">background-size: contain</h2>
+      <div class="img-wrapper"></div>
+    </div>
+</body>
+
+</html>
