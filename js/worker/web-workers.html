@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Web Workers</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <script>
+        const worker = new Worker('https://blog.jmazm.com/remark.js');
+
+        worker.postMessage('Hello World');
+
+        worker.onmessage = function (event) {
+            console.log('Received message ' + event.data);
+            doSomething();
+        }
+
+        function doSomething() {
+            // 执行任务
+            worker.postMessage('Work done!');
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>iterator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <script>
+        console.log(Symbol.iterator)
+
+        const obj = {
+            [Symbol.iterator]() {
+                return {
+                    next() {
+                        return {
+                            value: 1,
+                            done: true
+                        }
+                    }
+                }
+            },
+            name: 1,
+            age: 2
+        };
+
+        for (let item of obj) {
+            console.log(item)
+        }
+    </script>
+
+    <script>
+        class RangeIterator {
+            constructor(value, stop) {
+                    this.value = value;
+                    this.stop = stop;
+                }
+                [Symbol.iterator]() {
+                    return this;
+                }
+            next() {
+                var value = this.value;
+                if (this.value < this.stop) {
+                    this.value++;
+                    return {
+                        done: false,
+                        value: value
+                    }
+                }
+
+                return {
+                    done: true,
+                    value: undefined
+                }
+            }
+        }
+
+        function range(start, stop) {
+            return new RangeIterator(start, stop);
+        }
+
+        const r = range(0, 3);
+        console.log(r.next());
+        console.log(r.next());
+        console.log(r.next());
+        console.log(r.next());
+
+        for (let value of range(0, 3)) {
+            console.log(value)
+        }
+    </script>
+</body>
+
+</html>

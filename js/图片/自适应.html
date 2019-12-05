@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>图片自适应</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .wrapper {
+            height: 200px;
+            margin-bottom: 20px;
+            background: blue;
+            border: 1px solid red;
+        }
+
+        img {
+            /* width: 100px; */
+        }
+
+        .inner {
+            background: url(./test.jpg) no-repeat;
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>background</h2>
+
+    <div class="wrapper">
+        <style>
+            .inner-1 {
+                height: 150px;
+            }
+        </style>
+        <div class="inner inner-1"></div>
+    </div>
+
+    <div class="wrapper">
+        <style>
+            .inner-2 {
+                height: 19.2vw;
+            }
+        </style>
+        <div class="inner inner-2"></div>
+    </div>
+
+    <div class="wrapper">
+        <style>
+            .inner-3 {
+                padding-top: 20%;
+            }
+        </style>
+        <div class="inner inner-3"></div>
+    </div>
+
+    <h2>padding百分比实现比例固定图片自适应布局</h2>
+    <style>
+        img {
+            padding-bottom: 50%;
+        }
+    </style>
+    <div class="wrapper">
+        <img src="test.jpg">
+    </div>
+</body>
+
+</html>

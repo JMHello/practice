@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>string</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+  <script>
+    // match
+    var text = "cat, bat, sat, fat";
+    var pattern = /.at/g;
+    var matches = text.match(pattern);
+    var exec = pattern.exec(text);
+    console.log("match:", matches); 
+    console.log("exec:", exec); 
+
+    // replace
+
+    var text = "cat, bat, sat, fat";
+    result = text.replace(/(.at)/g, "word ($1)");
+    console.log(result);
+  </script>
+</body>
+
+</html>

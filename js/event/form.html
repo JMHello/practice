@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>表单相关事件</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <input id="testInput" type="text">
+    <select id="testSelect">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+    </select>
+
+    <script>
+        const testInput = document.getElementById('testInput');
+        const testSelect = document.getElementById('testSelect');
+
+        testInput.onchange = (e) => {
+            console.log(`input -> onchange -> ${e.target.value}`)
+        }
+
+        testInput.oninput = (e) => {
+            console.log(`input -> oninput -> ${e.target.value}`)
+        }
+
+        testSelect.onchange = (e) => {
+            console.log(`select -> onchange -> ${e.target.value}`)
+        }
+
+        testSelect.oninput = (e) => {
+            console.log(`select -> oninput -> ${e.target.value}`)
+        }
+    </script>
+</body>
+
+</html>

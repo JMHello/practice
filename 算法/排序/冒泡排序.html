@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>冒泡排序</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <script>
+        var arr = [2, 1, 6, 3, 5, 4];
+
+        function bubbleSort1(arr) {
+            // 经过一次外循环后，数组中最大的值肯定被排到数组末尾
+            for (let i = 0, len = arr.length - 1, temp; i < len; i++) {
+                for (let j = 0; j < len; j++) {
+                    temp = arr[j];
+
+                    if (temp > arr[j + 1]) {
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = temp;
+                    }
+                }
+            }
+
+            return arr;
+        }
+
+        console.log(bubbleSort1(arr));
+
+
+        function bubbleSort2(arr) {
+            for (let i = 0, len = arr.length, temp; i < len; i++) {
+                for (let j = 0; j < len - 1 - i; j++) {
+                    temp = arr[j];
+
+                    if (temp > arr[j + 1]) {
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = temp;
+                    }
+                }
+            }
+
+            return arr;
+        }
+
+        console.log(bubbleSort2(arr));
+
+        function bubbleSort3(arr) {
+            for (let i = arr.length, temp; i--;) {
+                for (let j = 0; j < i; j++) {
+                    temp = arr[j];
+
+                    if (temp > arr[j + 1]) {
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = temp;
+                    }
+                }
+            }
+
+            return arr;
+        }
+
+        console.log(bubbleSort3(arr));
+    </script>
+</body>
+
+</html>

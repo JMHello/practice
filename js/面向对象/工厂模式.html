@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>工厂模式</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+  <script>
+    // function createPerson(name, age) {
+    //   return {
+    //     name: name,
+    //     age: age
+    //   }
+    // }
+
+    // const p1 = createPerson('jm', 20)
+    // console.log(p1)
+    // console.log(p1 instanceof createPerson) // false
+    // console.log(p1 instanceof Object) // true
+
+
+    function Person(name, age) {
+      this.name = name
+      this.age = age
+      this.sayName = () => {
+        return this.name
+      }
+    }
+
+    const p1 = new Person('jm', 20)
+    const p2 = new Person('li', 20)
+
+    console.log(p1)
+    console.log(p1 instanceof Person) // true
+    console.log(p1.sayName === p2.sayName) // false
+  </script>
+</body>
+
+</html>

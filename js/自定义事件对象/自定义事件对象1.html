@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>自定义事件对象-1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <script>
+        class EventEmit {
+            constructor() {
+                this.events = {};
+            }
+
+            on(type, cb, once) {
+
+                if (!this.events[type]) {
+                    this.events[type] = []
+                }
+
+                cb = {
+                    handler: cb,
+                    once
+                }
+
+                this.events[type].push(cb);
+            }
+
+            once(type, cb) {
+                const _that = this;
+
+                const realEvent = function () {
+                    cb.call(this, ...arguments);
+                    _that.off(type, realEvent);
+                };
+
+                this.on(type, realEvent, true);
+
+            }
+
+            fire() {
+                let args = [...arguments];
+                const type = args.shift();
+                const listeners = this.events[type];
+
+                listeners && listeners.forEach(listener => {
+                    listener.handler.call(this, ...args);
+                });
+            }
+
+            off(type, cb) {
+                const listeners = this.events[type];
+
+                if (listeners && listeners.length) {
+                    // 如果cb存在，则去除其中的cb，否则整个时间数组删除
+
+                    if (cb && Object.prototype.toString.call(cb) === '[object Function]') {
+                        this.events[type] = listeners.filter((item) => {
+                            return cb !== item.handler;
+                        })
+                    } else {
+                        this.events[type] = [];
+                    }
+                }
+            }
+        }
+
+        const event = new EventEmit();
+
+        // const drink = function (type) {
+        //     console.log(`我要喝${type}`)
+        // };
+
+        // const eat1 = function (type) {
+        //     console.log(`我要吃1${type}`)
+        // }
+
+        // const eat2 = function (type) {
+        //     console.log(`我要吃2${type}`)
+        // }
+
+        // event.on('drink', drink);
+        // event.on('drink', drink);
+        // event.on('eat', eat1);
+        // event.on('eat', eat2);
+
+
+        // event.fire('drink', 'coco');
+        // event.fire('drink', 'water');
+
+        // event.fire('eat', 'fish1');
+        // event.fire('eat', 'apple2');
+        // event.fire('eat', 'fish2');
+        // event.fire('eat', 'apple1');
+
+        event.once('buy', function (type) {
+            console.log(`我要买${type}`)
+        });
+        event.once('buy', function (type) {
+            console.log(`我要买${type}`)
+        });
+
+        // event.fire('buy', 'book');
+        // event.fire('buy', 'pencil');
+
+        console.log(event)
+
+
+        // event.off('buy');
+
+        // event.fire('drink', 'coffee');
+    </script>
+</body>
+
+</html>
